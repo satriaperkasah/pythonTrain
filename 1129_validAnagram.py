@@ -19,18 +19,29 @@ Follow up: What if the inputs contain Unicode characters? How would you adapt yo
 class Solution(object):
     def isAnagram(self, s, t):
         newInput = {}
+
+        #stage 1: input all data into dictionary count
         for x in s:
             newInput[x] = newInput.get(x,0) + 1
             #print(newInput[x], x)
 
-        for y in t:
-            flag = newInput.get(y)
-            if flag == None:
-                flag = False
-                break
-            else:
-                newInput[y] -= 1
-                flag = True
+        if len(s) == len(t):
+            for y in t:
+                flag = newInput.get(y)
+                if flag == None:
+                    flag = False
+                    break
+                else:
+                    newInput[y] -= 1
+                    flag = True
+        else:
+            flag = False
+
+        if flag == True:
+            for x in s:
+                if newInput[x] != 0:
+                    flag = False
+                    break
 
         if flag == True:
             return True
@@ -38,7 +49,7 @@ class Solution(object):
             return False
 
 solution = Solution()
-print(solution.isAnagram("rat", "cat"))
+print(solution.isAnagram("ab", "b"))
 
 """
 for x in s:
