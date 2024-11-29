@@ -25,6 +25,7 @@ class Solution(object):
             newInput[x] = newInput.get(x,0) + 1
             #print(newInput[x], x)
 
+        #stage 2: deduct the dictionary based on the given input
         if len(s) == len(t):
             for y in t:
                 flag = newInput.get(y)
@@ -37,12 +38,14 @@ class Solution(object):
         else:
             flag = False
 
+        #stage 3: check the dictionary whether any leftover
         if flag == True:
             for x in s:
                 if newInput[x] != 0:
                     flag = False
                     break
 
+        #stage 4: flag judgement
         if flag == True:
             return True
         else:
